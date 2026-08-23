@@ -1,7 +1,7 @@
 """AI-Consent MCP Server — EU AI Act readiness scoring via MCP.
 
-Exposes AI-Consent assessment tools over the Model Context Protocol
-(stdio transport). Deploy on MCPize or run locally.
+Exposes AI-Consent assessment tools over the Model Context Protocol.
+Uses SSE transport for MCPize deployment; stdio for local execution.
 
 Tools:
   classify_ai_system  — Determine EU AI Act risk category
@@ -813,4 +813,9 @@ def assess_manifest(manifest_yaml: str) -> str:
 
 
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    import os
+    transport = os.environ.get("MCP_TRANSPORT", "stdio")
+    if transport == "sse":
+        mcp.run(transport="sse", host="0.0.0.0", port=int(os.environ.get("PORT", "8080")))
+    else:
+        mcp.run(transport="stdio")

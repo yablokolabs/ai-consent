@@ -8,6 +8,8 @@ entry: mcp-server/server.py
 build:
   install: pip install ".[mcp]"
 startCommand:
-  type: stdio
+  type: http
   command: python
   args: ["mcp-server/server.py"]
+env:
+  MCP_TRANSPORT: sse
