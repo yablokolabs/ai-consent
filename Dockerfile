@@ -1,17 +1,20 @@
-FROM python:3.12-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY mcp-server/requirements.txt mcp-server/
-RUN pip install --no-cache-dir -r mcp-server/requirements.txt
+# Install system deps
+RUN pip install --no-cache-dir --upgrade pip
 
+# Copy and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
 COPY mcp-server/ mcp-server/
-COPY src/ src/
-COPY rules/ rules/
-COPY pyproject.toml .
 
-ENV PYTHONPATH=/app/src
+EXPOSE 8081
 
-EXPOSE 8000
+# SSE transport for MCPize
+ENV MCP_TRANSPORT=sse
 
 CMD ["python", "mcp-server/server.py"]

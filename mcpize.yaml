@@ -3,11 +3,11 @@ name: ai-consent
 description: >-
   EU AI Act readiness scoring for AI agents. Scan. Score. Fix. Re-check.
   Classify risk, assess compliance, and get prioritized remediation guidance.
-runtime: python
-entry: mcp-server/server.py
+runtime: container
 build:
-  install: pip install -r requirements.txt
+  dockerfile: Dockerfile
+entry: mcp-server/server.py
 startCommand:
-  type: http
+  type: stdio
   command: python
   args: ["mcp-server/server.py"]
