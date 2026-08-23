@@ -6,7 +6,7 @@ description: >-
 runtime: python
 entry: mcp-server/server.py
 build:
-  install: pip install ".[mcp]"
+  install: pip install -r requirements.txt
 startCommand:
   type: http
   command: python
