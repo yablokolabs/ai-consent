@@ -1,0 +1,40 @@
+system:
+  name: internal-summarizer
+  version: 1.0.0
+  purpose: Summarize internal meeting notes and documents for team reference
+  industry: technology
+
+deployment:
+  regions:
+    - EU
+
+models:
+  - provider: anthropic
+    model: claude-haiku-4-20250514
+
+data:
+  personal_data: false
+  sensitive_data: false
+  data_lineage_documented: false
+  data_types:
+    - meeting_notes
+    - internal_documents
+
+human_oversight:
+  enabled: false
+
+logging:
+  enabled: false
+  retention_days: 0
+
+security:
+  authentication: true
+  authorization: true
+  secrets_manager: false
+
+documentation:
+  architecture_diagram: false
+
+governance:
+  owner: eng-team
+  incident_response: false

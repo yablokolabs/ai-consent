@@ -1,0 +1,44 @@
+system:
+  name: recruitment-agent
+  version: 1.2.0
+  purpose: Candidate screening and evaluation assistance for hiring workflows
+  industry: recruitment
+
+deployment:
+  regions:
+    - EU
+
+models:
+  - provider: anthropic
+    model: claude-sonnet-4-20250514
+
+data:
+  personal_data: true
+  sensitive_data: false
+  data_lineage_documented: true
+  data_types:
+    - personal_data
+    - employment_history
+    - educational_records
+
+human_oversight:
+  enabled: true
+  approval_required_for:
+    - reject_candidate
+
+logging:
+  enabled: true
+  retention_days: 365
+
+security:
+  authentication: true
+  authorization: true
+  secrets_manager: true
+
+documentation:
+  architecture_diagram: true
+  model_card: true
+
+governance:
+  owner: hr-engineering-team
+  incident_response: true

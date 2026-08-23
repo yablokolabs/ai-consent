@@ -1,0 +1,48 @@
+system:
+  name: clinical-decision-support
+  version: 3.0.0
+  purpose: Clinical decision support for treatment recommendations and diagnosis assistance
+  industry: healthcare
+
+deployment:
+  regions:
+    - EU
+
+models:
+  - provider: anthropic
+    model: claude-opus-4-20250514
+
+data:
+  personal_data: true
+  sensitive_data: true
+  data_lineage_documented: true
+  data_types:
+    - personal_data
+    - sensitive_health_data
+    - diagnostic_results
+    - treatment_history
+
+human_oversight:
+  enabled: true
+  approval_required_for:
+    - prescribe_treatment
+    - diagnose_condition
+    - recommend_medication
+
+logging:
+  enabled: true
+  retention_days: 730
+
+security:
+  authentication: true
+  authorization: true
+  secrets_manager: true
+
+documentation:
+  architecture_diagram: true
+  model_card: true
+  risk_assessment: true
+
+governance:
+  owner: clinical-ai-team
+  incident_response: true

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yablokolabs.github.io/ai-consent/rules-schema.json",
+  "title": "AI-Consent Ruleset Schema",
+  "description": "Schema for versioned regulatory rulesets consumed by AI-Consent.",
+  "type": "object",
+  "required": ["ruleset_id", "name", "version", "effective_date", "jurisdiction", "rules"],
+  "properties": {
+    "ruleset_id": {
+      "type": "string",
+      "description": "Unique ruleset identifier, e.g. EU-AI-ACT-2026"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "jurisdiction": {
+      "type": "string",
+      "description": "e.g. EU, US, ISO"
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "description": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/rule"
+      }
+    }
+  },
+  "$defs": {
+    "rule": {
+      "type": "object",
+      "required": ["id", "article", "category", "title", "description", "applies_to", "severity", "weight"],
+      "properties": {
+        "id": {"type": "string", "description": "Unique rule ID, e.g. EUAI-HUMAN-OVERSIGHT-001"},
+        "article": {"type": "string"},
+        "category": {
+          "type": "string",
+          "enum": [
+            "risk_management",
+            "data_governance",
+            "technical_documentation",
+            "logging_traceability",
+            "human_oversight",
+            "accuracy_robustness",
+            "cybersecurity",
+            "transparency",
+            "governance"
+          ]
+        },
+        "title": {"type": "string"},
+        "description": {"type": "string"},
+        "applies_to": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["prohibited", "high_risk", "limited_risk", "gpai", "minimal_risk", "all"]
+          }
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low"]
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "source": {
+          "type": "string",
+          "format": "uri"
+        },
+        "effective_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "evidence_guidance": {
+          "type": "string",
+          "description": "Guidance on what constitutes acceptable evidence for this requirement"
+        }
+      }
+    }
+  }
+}

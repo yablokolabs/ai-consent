@@ -1,0 +1,42 @@
+system:
+  name: customer-support-chatbot
+  version: 2.1.0
+  purpose: Automated customer support responses and FAQ assistance
+  industry: ecommerce
+
+deployment:
+  regions:
+    - EU
+    - US
+
+models:
+  - provider: openai
+    model: gpt-4o
+
+data:
+  personal_data: true
+  sensitive_data: false
+  data_lineage_documented: false
+  data_types:
+    - personal_data
+    - order_history
+    - support_tickets
+
+human_oversight:
+  enabled: false
+
+logging:
+  enabled: true
+  retention_days: 90
+
+security:
+  authentication: true
+  authorization: true
+  secrets_manager: true
+
+documentation:
+  architecture_diagram: false
+
+governance:
+  owner: support-engineering
+  incident_response: false

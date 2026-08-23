@@ -1,0 +1,41 @@
+system:
+  name: logistics-routing-agent
+  version: 1.0.0
+  purpose: Optimize delivery routes and warehouse logistics
+  industry: logistics
+
+deployment:
+  regions:
+    - EU
+
+models:
+  - provider: anthropic
+    model: claude-sonnet-4-20250514
+
+data:
+  personal_data: false
+  sensitive_data: false
+  data_lineage_documented: false
+  data_types:
+    - delivery_addresses
+    - route_data
+    - warehouse_inventory
+
+human_oversight:
+  enabled: false
+
+logging:
+  enabled: true
+  retention_days: 180
+
+security:
+  authentication: true
+  authorization: true
+  secrets_manager: true
+
+documentation:
+  architecture_diagram: true
+
+governance:
+  owner: logistics-eng
+  incident_response: false
