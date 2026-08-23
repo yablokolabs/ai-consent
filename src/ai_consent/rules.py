@@ -11,8 +11,9 @@ from pathlib import Path
 from typing import Any
 
 
-def _pkg_dir() -> Path:
-    return Path(__file__).resolve().parent
+def _data_dir() -> Path:
+    """Return the data directory bundled inside the package."""
+    return Path(__file__).resolve().parent / "data"
 
 
 class Ruleset:
@@ -97,7 +98,7 @@ def load_ruleset(path: str | Path | None = None) -> Ruleset:
         Loaded Ruleset instance.
     """
     if path is None:
-        path = _pkg_dir().parent.parent / "rules" / "eu_ai_act_2026.json"
+        path = _data_dir() / "eu_ai_act_2026.json"
     else:
         path = Path(path)
 

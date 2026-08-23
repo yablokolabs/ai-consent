@@ -19,14 +19,9 @@ Tools:
 """
 
 import json
-import sys
 from typing import Any
 
 from mcp.server.fastmcp import FastMCP
-
-# Add the src directory to the path
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 from ai_consent.classifier import classify
 from ai_consent.evaluator import (

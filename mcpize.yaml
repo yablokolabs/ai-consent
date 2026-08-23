@@ -4,9 +4,8 @@ description: >-
   EU AI Act readiness scoring for AI agents. Scan. Score. Fix. Re-check.
   Classify risk, assess compliance, and get prioritized remediation guidance.
 runtime: python
-entry: mcp-server/server.py
 build:
-  install: pip install -r mcp-server/requirements.txt
+  install: pip install ".[mcp]"
 startCommand:
   type: stdio
   command: python

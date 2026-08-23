@@ -50,4 +50,4 @@ testpaths = ["tests"]
 pythonpath = ["src"]
 
 [tool.setuptools.package-data]
-ai_consent = ["py.typed"]
+ai_consent = ["py.typed", "data/*.json"]
