@@ -11,5 +11,3 @@ startCommand:
   type: http
   command: python
   args: ["mcp-server/server.py"]
-env:
-  MCP_TRANSPORT: sse
