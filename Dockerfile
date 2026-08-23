@@ -12,9 +12,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY mcp-server/ mcp-server/
 
-EXPOSE 8081
-
-# SSE transport for MCPize
-ENV MCP_TRANSPORT=sse
+EXPOSE 8080
 
 CMD ["python", "mcp-server/server.py"]

@@ -27,7 +27,7 @@ from typing import Any
 # both locally and in MCPize Cloud Run (where cwd is /app)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 
 from ai_consent.classifier import classify
 from ai_consent.evaluator import (
@@ -819,7 +819,7 @@ def assess_manifest(manifest_yaml: str) -> str:
 
 
 if __name__ == "__main__":
-    transport = os.environ.get("MCP_TRANSPORT", "sse")
+    transport = os.environ.get("MCP_TRANSPORT", "stdio")
     if transport == "sse":
         mcp.run(transport="sse", host="0.0.0.0", port=int(os.environ.get("PORT", "8081")))
     else:
